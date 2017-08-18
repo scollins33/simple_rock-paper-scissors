@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+
+  <h1 id="game"></h1>
+  <h1 id='player'> </h1>
+  <h1 id='computer'> </h1>
+  <h1 id='wins'> </h1>
+  <h1 id='loses'> </h1>
+
+
+  <script type="text/javascript">
+    
+    var startGame = confirm("Start playing?");
+
+    if (startGame) {
+      var display = document.getElementById("game");
+      display.innerHTML = "PRESS \'r\'  \'s\' or \'p\' to play each round";
+
+      var totalWins = 0;
+      var totalLoses = 0;
+
+      document.onkeyup = function(event) {
+        // build in selection verification
+        var userChoice = event.key;
+
+        if (userChoice != 'r' && userChoice != 'p' && userChoice != 's') {
+          alert('Invalid option, please press [ r  p  s ]');
+        }
+        else {
+          var choices = ['r', 'p', 's'];
+          var randomInt = Math.floor(Math.random() * 100) % 3;
+          var computerChoice = choices[randomInt];
+
+          var playerH1 = document.getElementById('player')
+          var computerH1 = document.getElementById('computer')
+          
+          playerH1.innerHTML = "User choice: " + userChoice;
+          computerH1.innerHTML = "Computer choice: " + computerChoice;
+
+          if (userChoice == computerChoice) {
+            display.innerHTML = "Neither player wins";
+          }
+          else if (userChoice == 'r') {
+            if (computerChoice == 's') {
+              display.innerHTML = "USER WINS";
+              totalWins++;
+            }
+            else {
+              display.innerHTML = "COMPUTER WINS";
+              totalLoses++;
+            }
+          }
+          else if (userChoice == 'p') {
+            if (computerChoice == 'r') {
+              display.innerHTML = "USER WINS";
+              totalWins++;
+            }
+            else {
+              display.innerHTML = "COMPUTER WINS";
+              totalLoses++;
+            }
+          }
+          else if (userChoice == 's') {
+            if (computerChoice == 'p') {
+              display.innerHTML = "USER WINS";
+              totalWins++;
+            }
+            else {
+              display.innerHTML = "COMPUTER WINS";
+              totalLoses++;
+            }
+          }
+        }
+
+        var winsH1 = document.getElementById('wins');
+        var losesH1 = document.getElementById('loses');
+
+        winsH1.innerHTML = "Wins: " + totalWins;
+        losesH1.innerHTML = "Loses: " + totalLoses;
+
+      }
+    }
+    
+  </script>
+
+</body>
+
+</html>
